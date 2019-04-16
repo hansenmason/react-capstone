@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import './App.scss'
-import { Route } from 'react-router-dom'
+import { Route, NavLink } from 'react-router-dom'
 
 import AuthenticatedRoute from './auth/components/AuthenticatedRoute'
 import Header from './header/Header'
@@ -8,6 +8,9 @@ import SignUp from './auth/components/SignUp'
 import SignIn from './auth/components/SignIn'
 import SignOut from './auth/components/SignOut'
 import ChangePassword from './auth/components/ChangePassword'
+import GameCreate from './GameCreate'
+import Game from './Game'
+import GameEdit from './GameEdit'
 
 import Alert from 'react-bootstrap/Alert'
 
@@ -55,7 +58,18 @@ class App extends Component {
           <AuthenticatedRoute user={user} path='/change-password' render={() => (
             <ChangePassword alert={this.alert} user={user} />
           )} />
+          <nav>
+            <NavLink to="/games" exact activeClassName="active-link">GamesList</NavLink>
+            <NavLink to="/game-create" exact activeClassName="active-link">New Game</NavLink>
+          </nav>
         </main>
+        <AuthenticatedRoute exact user={user} path='/games/:id' component={Game} />
+        <AuthenticatedRoute user={user} exact path='/games/:id/edit' render={(props) => (
+          <GameEdit {...props} user={user} />
+        )} />
+        <AuthenticatedRoute user={user} exact path='/game-create' render={(props) => (
+          <GameCreate {...props} user={user} />
+        )} />
       </React.Fragment>
     )
   }
