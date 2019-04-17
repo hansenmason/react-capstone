@@ -5,12 +5,12 @@ import { Redirect } from 'react-router-dom'
 
 import GameForm from './GameForm'
 
-class GameEdit extends Component {
+class GameEditFour extends Component {
   constructor () {
     super()
 
     this.state = {
-      game: null,
+      fourgame: null,
       message: null,
       updated: false,
       deleted: false
@@ -19,44 +19,44 @@ class GameEdit extends Component {
 
   componentDidMount () {
     const id = this.props.match.params.id
-    axios.get(`${apiUrl}/games/${id}`)
-      .then(response => this.setState({ game: response.data.game }))
+    axios.get(`${apiUrl}/fourgames/${id}`)
+      .then(response => this.setState({ fourgame: response.data.fourgame }))
       .catch(() => this.setState({ ...this.state, message: 'did not work' }))
   }
 
   handleSubmit = (event) => {
     event.preventDefault()
-    const { game } = this.state
+    const { fourgame } = this.state
     const user = this.props.user
     axios({
-      url: `${apiUrl}/games/${game.id}`,
+      url: `${apiUrl}/fourgames/${fourgame.id}`,
       method: 'patch',
       headers: {
         'Authorization': `Token token=${user.token}`
       },
-      data: { game }
+      data: { fourgame }
     })
       .then(() => this.setState({ updated: true }))
-      .catch(() => this.setState({ game: { id: game.id }, message: 'did not work' }))
+      .catch(() => this.setState({ fourgame: { id: fourgame.id }, message: 'did not work' }))
   }
 
   handleChange = event => {
-    this.setState({ game: { ...this.state.game, [event.target.name]: event.target.value } })
+    this.setState({ fourgame: { ...this.state.fourgame, [event.target.name]: event.target.value } })
   }
 
   render () {
-    const { updated, game, pico, fumi, bagel, deleted } = this.state
+    const { updated, fourgame, pico, fumi, bagel, deleted } = this.state
     const user = this.props.user
-    if (!game) {
+    if (!fourgame) {
       return <p>Loading...</p>
     }
 
     if (updated) {
-      return <Redirect to={`/games/${game.id}`} />
+      return <Redirect to={`/fourgames/${fourgame.id}`} />
     }
 
     if (deleted) {
-      return <Redirect to={'/games'} />
+      return <Redirect to={'/fourgames'} />
     }
 
     return (
@@ -69,15 +69,15 @@ class GameEdit extends Component {
           handleSubmit={this.handleSubmit}
         />
         <button onClick={() =>
-          axios.delete(apiUrl + `/games/${game.id}`, { headers: {
+          axios.delete(apiUrl + `/fourgames/${fourgame.id}`, { headers: {
             'Authorization': `Token token=${user.token}`
           } })
             .then(() => this.setState({ deleted: true }))
-            .catch(() => this.setState({ game: { id: game.id }, message: 'did not work' }))
+            .catch(() => this.setState({ fourgame: { id: fourgame.id }, message: 'did not work' }))
         } className="btn btn-danger btn-sm">Delete</button>
       </Fragment>
     )
   }
 }
 
-export default GameEdit
+export default GameEditFour

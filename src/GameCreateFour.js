@@ -5,12 +5,12 @@ import { Redirect } from 'react-router-dom'
 
 import GameForm from './GameForm'
 
-class GameCreate extends Component {
+class GameCreateFour extends Component {
   constructor () {
     super()
 
     this.state = {
-      game: {
+      fourgame: {
         pico: '',
         fumi: '',
         bagel: '',
@@ -26,29 +26,30 @@ class GameCreate extends Component {
       return Math.floor(Math.random() * 10)
     }
     function randomNum () {
-      let num1, num2, num3
+      let num1, num2, num3, num4
       let randVal = ''
       do {
         num1 = randomDigit()
         num2 = randomDigit()
         num3 = randomDigit()
+        num4 = randomDigit()
       }
-      while (num1 === num2 || num1 === num3 || num2 === num3)
-      randVal = num1.toString() + num3.toString() + num2.toString()
+      while (num1 === num2 || num1 === num3 || num1 === num4 || num2 === num3 || num2 === num4 || num3 === num4)
+      randVal = num1.toString() + num2.toString() + num3.toString() + num4.toString()
       return randVal
     }
     const randomNumber = randomNum()
-    const game = this.state.game
+    const game = this.state.fourgame
     event.preventDefault()
     const user = this.props.user
     axios({
-      url: `${apiUrl}/games`,
+      url: `${apiUrl}/fourgames`,
       method: 'post',
       headers: {
         'Authorization': `Token token=${user.token}`
       },
       data: {
-        game: {
+        fourgame: {
           pico: game.pico,
           fumi: game.fumi,
           bagel: game.bagel,
@@ -56,19 +57,19 @@ class GameCreate extends Component {
         }
       }
     })
-      .then((response) => this.setState({ created: true, game: response.data.game }))
+      .then((response) => this.setState({ created: true, fourgame: response.data.fourgame }))
       .catch(() => this.setState({ ...this.state, message: 'did not work' }))
   }
 
   handleChange = event => {
-    this.setState({ game: { ...this.state.game, [event.target.name]: event.target.value } })
+    this.setState({ fourgame: { ...this.state.fourgame, [event.target.name]: event.target.value } })
   }
 
   render () {
-    const { created, game, pico, fumi, bagel } = this.state
+    const { created, fourgame, pico, fumi, bagel } = this.state
 
     if (created) {
-      return <Redirect to={`/games/${game.id}`} />
+      return <Redirect to={`/fourgames/${fourgame.id}`} />
     }
 
     return (
@@ -83,4 +84,4 @@ class GameCreate extends Component {
   }
 }
 
-export default GameCreate
+export default GameCreateFour

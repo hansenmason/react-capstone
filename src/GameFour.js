@@ -5,12 +5,12 @@ import { Redirect, Link } from 'react-router-dom'
 
 import Alert from 'react-bootstrap/Alert'
 
-class Game extends Component {
+class GameFour extends Component {
   constructor () {
     super()
 
     this.state = {
-      game: null,
+      fourgame: null,
       guess: '',
       redirect: false,
       message: null,
@@ -22,8 +22,8 @@ class Game extends Component {
 
   componentDidMount () {
     const id = this.props.match.params.id
-    axios.get(`${apiUrl}/games/${id}`)
-      .then(response => this.setState({ game: response.data.game }))
+    axios.get(`${apiUrl}/fourgames/${id}`)
+      .then(response => this.setState({ fourgame: response.data.fourgame }))
       .catch(() => this.setState({ ...this.state, message: 'did not work' }))
   }
 
@@ -32,23 +32,26 @@ class Game extends Component {
   }
 
   handleSubmit = (event) => {
-    const feedback = this.state.game
+    const feedback = this.state.fourgame
     event.preventDefault()
-    const num = this.state.game.number
+    const num = this.state.fourgame.number
     const guess = this.state.guess
 
     let response = ''
 
     if (num[0] === guess[0]) response += `${feedback.fumi} `
-    else if (num[0] === guess[1] || num[0] === guess[2]) response += `${feedback.pico} `
+    else if (num[0] === guess[1] || num[0] === guess[2] || num[0] === guess[3]) response += `${feedback.pico} `
 
     if (num[1] === guess[1]) response += `${feedback.fumi} `
-    else if (num[1] === guess[0] || num[1] === guess[2]) response += `${feedback.pico} `
+    else if (num[1] === guess[0] || num[1] === guess[2] || num[1] === guess[3]) response += `${feedback.pico} `
 
     if (num[2] === guess[2]) response += `${feedback.fumi} `
-    else if (num[2] === guess[0] || num[2] === guess[1]) response += `${feedback.pico} `
+    else if (num[2] === guess[0] || num[2] === guess[1] || num[0] === guess[3]) response += `${feedback.pico} `
 
-    if (num[0] === guess[0] && num[1] === guess[1] && num[2] === guess[2]) response = `You won in ${this.state.turns + 1} turns!`
+    if (num[3] === guess[3]) response += `${feedback.fumi} `
+    else if (num[3] === guess[0] || num[3] === guess[1] || num[3] === guess[2]) response += `${feedback.pico} `
+
+    if (num[0] === guess[0] && num[1] === guess[1] && num[2] === guess[2] && num[3] === guess[3]) response = `You won in ${this.state.turns + 1} turns!`
     else if (response === '') return (`${feedback.bagel} `)
 
     this.setState({ response: response, guesses: [...this.state.guesses, `${guess}: ${response}`], turns: this.state.turns + 1 })
@@ -56,23 +59,21 @@ class Game extends Component {
 
   renderRedirect = () => {
     if (this.state.redirect) {
-      return <Redirect to={{ pathname: '/games', state: { message: 'Successfully deleted game!' } }} />
+      return <Redirect to={{ pathname: '/fourgames', state: { message: 'Successfully deleted game!' } }} />
     }
   }
 
   render () {
-    if (!this.state.game) {
+    if (!this.state.fourgame) {
       return <h2>Loading...</h2>
     }
-
     const { guess, message, response } = this.state
-
     return (
       <Fragment>
         { message && <Alert variant="danger" dismissable>{this.state.message}</Alert> }
         <form onSubmit={this.handleSubmit}>
           <label htmlFor="guess">Guess A Number</label>
-          <input value={guess} name="guess" type="number" max="999" onChange={this.handleChange} />
+          <input value={guess} name="guess" type="number" max="9999" onChange={this.handleChange} />
           <button type="submit">Guess!</button>
         </form>
         <Link to={this.props.match.url + '/edit'}><button>Edit</button></Link>
@@ -89,4 +90,4 @@ class Game extends Component {
   }
 }
 
-export default Game
+export default GameFour
