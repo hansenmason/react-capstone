@@ -64,9 +64,9 @@ class Game extends Component {
     if (!this.state.game) {
       return <h2>Loading...</h2>
     }
-
     const { guess, message, response } = this.state
-
+    const currentUser = this.props.user.id.toString()
+    const createdUser = this.state.game.user_id.toString()
     return (
       <Fragment>
         { message && <Alert variant="danger" dismissable>{this.state.message}</Alert> }
@@ -75,7 +75,7 @@ class Game extends Component {
           <input value={guess} name="guess" type="number" max="999" onChange={this.handleChange} />
           <button type="submit">Guess!</button>
         </form>
-        <Link to={this.props.match.url + '/edit'}><button>Edit</button></Link>
+        { currentUser === createdUser ? <Link to={this.props.match.url + '/edit'}><button>Edit</button></Link> : ''}
         <h2> { response } </h2>
         <ul>
           { this.state.guesses.map(guess => (

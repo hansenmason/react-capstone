@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import './App.scss'
-import { Route, NavLink } from 'react-router-dom'
+import { Route } from 'react-router-dom'
 
 import AuthenticatedRoute from './auth/components/AuthenticatedRoute'
 import Header from './header/Header'
@@ -63,17 +63,21 @@ class App extends Component {
           <AuthenticatedRoute user={user} path='/change-password' render={() => (
             <ChangePassword alert={this.alert} user={user} />
           )} />
-          <nav>
-            <NavLink to="/games" exact activeClassName="active-link">GamesList</NavLink>
-            <NavLink to="/fourgames" exact activeClassName="active-link">GamesList</NavLink>
-            <NavLink to="/game-create" exact activeClassName="active-link">New Game Three</NavLink>
-            <NavLink to="/game-create-four" exact activeClassName="active-link">New Game Four</NavLink>
-          </nav>
         </main>
-        <Route exact path='/games' component={Games} />
-        <Route exact path='/fourgames' component={GamesFour} />
-        <AuthenticatedRoute exact user={user} path='/games/:id' component={Game} />
-        <AuthenticatedRoute exact user={user} path='/fourgames/:id' component={GameFour} />
+        <nav>
+        </nav>
+        <Route exact path='/games' render={(props) => (
+          <Games {...props} user={user} />
+        )} />
+        <Route exact path='/fourgames' render={(props) => (
+          <GamesFour {...props} user={user} />
+        )} />
+        <AuthenticatedRoute exact user={user} path='/games/:id' render={(props) => (
+          <Game {...props} user={user} />
+        )} />
+        <AuthenticatedRoute exact user={user} path='/fourgames/:id' render={(props) => (
+          <GameFour {...props} user={user} />
+        )} />
         <AuthenticatedRoute user={user} exact path='/games/:id/edit' render={(props) => (
           <GameEdit {...props} user={user} />
         )} />
