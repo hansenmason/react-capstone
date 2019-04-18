@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Fragment, Component } from 'react'
 import axios from 'axios'
 import apiUrl from './apiConfig'
 import { Redirect } from 'react-router-dom'
@@ -57,7 +57,7 @@ class GameCreate extends Component {
       }
     })
       .then((response) => this.setState({ created: true, game: response.data.game }))
-      .catch(() => this.setState({ ...this.state, message: 'did not work' }))
+      .catch(() => this.setState({ ...this.state, message: 'Did Not Work' }))
   }
 
   handleChange = event => {
@@ -65,20 +65,24 @@ class GameCreate extends Component {
   }
 
   render () {
-    const { created, game, pico, fumi, bagel } = this.state
+    const { message, created, game, pico, fumi, bagel } = this.state
 
     if (created) {
       return <Redirect to={`/games/${game.id}`} />
     }
 
     return (
-      <GameForm
-        pico={pico}
-        fumi={fumi}
-        bagel={bagel}
-        handleChange={this.handleChange}
-        handleSubmit={this.handleSubmit}
-      />
+      <Fragment>
+        <h3>{ message }</h3>
+        <h4>New Game With Three Digits:</h4>
+        <GameForm
+          pico={pico}
+          fumi={fumi}
+          bagel={bagel}
+          handleChange={this.handleChange}
+          handleSubmit={this.handleSubmit}
+        />
+      </Fragment>
     )
   }
 }

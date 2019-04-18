@@ -4,10 +4,24 @@ body {
   padding: 0;
 }
 
-.alert {
-  margin: 30px;
-}
-
 .guess {
   color: #ffd700;
+}
+
+.nav-links {
+  display: flex;
+  padding: 20px;
+  justify-content: space-between;
+}
+
+.guess-response {
+  display: flex;
+  color: #000080;
+  padding: 20px;
+  justify-content: center;
+}
+
+.games-list {
+  padding: 10px;
+  font-size: 20px;
 }

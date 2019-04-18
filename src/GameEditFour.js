@@ -21,7 +21,7 @@ class GameEditFour extends Component {
     const id = this.props.match.params.id
     axios.get(`${apiUrl}/fourgames/${id}`)
       .then(response => this.setState({ fourgame: response.data.fourgame }))
-      .catch(() => this.setState({ ...this.state, message: 'did not work' }))
+      .catch(() => this.setState({ ...this.state, message: 'Did Not Work' }))
   }
 
   handleSubmit = (event) => {
@@ -37,7 +37,7 @@ class GameEditFour extends Component {
       data: { fourgame }
     })
       .then(() => this.setState({ updated: true }))
-      .catch(() => this.setState({ fourgame: { id: fourgame.id }, message: 'did not work' }))
+      .catch(() => this.setState({ fourgame: { id: fourgame.id }, message: 'Did Not Work' }))
   }
 
   handleChange = event => {
@@ -45,7 +45,7 @@ class GameEditFour extends Component {
   }
 
   render () {
-    const { updated, fourgame, pico, fumi, bagel, deleted } = this.state
+    const { message, updated, fourgame, pico, fumi, bagel, deleted } = this.state
     const user = this.props.user
     if (!fourgame) {
       return <p>Loading...</p>
@@ -61,6 +61,7 @@ class GameEditFour extends Component {
 
     return (
       <Fragment>
+        <h3>{ message }</h3>
         <GameForm
           pico={pico}
           fumi={fumi}
@@ -73,7 +74,7 @@ class GameEditFour extends Component {
             'Authorization': `Token token=${user.token}`
           } })
             .then(() => this.setState({ deleted: true }))
-            .catch(() => this.setState({ fourgame: { id: fourgame.id }, message: 'did not work' }))
+            .catch(() => this.setState({ fourgame: { id: fourgame.id }, message: 'Did Not Work' }))
         } className="btn btn-danger btn-sm">Delete</button>
       </Fragment>
     )

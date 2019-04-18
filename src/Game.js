@@ -3,8 +3,6 @@ import axios from 'axios'
 import apiUrl from './apiConfig'
 import { Redirect, Link } from 'react-router-dom'
 
-import Alert from 'react-bootstrap/Alert'
-
 class Game extends Component {
   constructor () {
     super()
@@ -16,7 +14,8 @@ class Game extends Component {
       message: null,
       response: '',
       guesses: [],
-      turns: 0
+      turns: 0,
+      over: false
     }
   }
 
@@ -24,7 +23,7 @@ class Game extends Component {
     const id = this.props.match.params.id
     axios.get(`${apiUrl}/games/${id}`)
       .then(response => this.setState({ game: response.data.game }))
-      .catch(() => this.setState({ ...this.state, message: 'did not work' }))
+      .catch(() => this.setState({ ...this.state, message: 'Did Not Work' }))
   }
 
   handleChange = event => {
@@ -48,8 +47,10 @@ class Game extends Component {
     if (num[2] === guess[2]) response += `${feedback.fumi} `
     else if (num[2] === guess[0] || num[2] === guess[1]) response += `${feedback.pico} `
 
-    if (num[0] === guess[0] && num[1] === guess[1] && num[2] === guess[2]) response = `You won in ${this.state.turns + 1} turns!`
-    else if (response === '') return (`${feedback.bagel} `)
+    if (num[0] === guess[0] && num[1] === guess[1] && num[2] === guess[2]) {
+      response = `You guessed it in ${this.state.turns + 1} turns!`
+      this.setState({ over: true })
+    } else if (response === '') return (`${feedback.bagel} `)
 
     this.setState({ response: response, guesses: [...this.state.guesses, `${guess}: ${response}`], turns: this.state.turns + 1 })
   }
@@ -64,19 +65,22 @@ class Game extends Component {
     if (!this.state.game) {
       return <h2>Loading...</h2>
     }
-    const { guess, message, response } = this.state
+    const { guess, message, response, over } = this.state
     const currentUser = this.props.user.id.toString()
     const createdUser = this.state.game.user_id.toString()
+    console.log(this.state)
     return (
       <Fragment>
-        { message && <Alert variant="danger" dismissable>{this.state.message}</Alert> }
-        <form onSubmit={this.handleSubmit}>
-          <label htmlFor="guess">Guess A Number</label>
-          <input value={guess} name="guess" type="number" max="999" onChange={this.handleChange} />
-          <button type="submit">Guess!</button>
-        </form>
+        <h3>{ message }</h3>
+        { over ? ''
+          : <form onSubmit={this.handleSubmit}>
+            <label htmlFor="guess">Guess A Number</label>
+            <input value={guess} name="guess" type="number" max="999" onChange={this.handleChange} />
+            <button type="submit">Guess!</button>
+          </form>
+        }
         { currentUser === createdUser ? <Link to={this.props.match.url + '/edit'}><button>Edit</button></Link> : ''}
-        <h2> { response } </h2>
+        <h1 className="guess-response"> { response } </h1>
         <ul>
           { this.state.guesses.map(guess => (
             <Fragment key={guess}>
