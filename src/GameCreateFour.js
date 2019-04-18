@@ -75,7 +75,7 @@ class GameCreateFour extends Component {
     return (
       <Fragment>
         <h3>{ message }</h3>
-        <h4>New Game With Four Digits:</h4>
+        <h4 className="top-message">New Game With Four Digits:</h4>
         <GameForm
           pico={pico}
           fumi={fumi}

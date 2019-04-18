@@ -31,8 +31,9 @@ class Game extends Component {
   }
 
   handleSubmit = (event) => {
-    const feedback = this.state.game
     event.preventDefault()
+    console.log('hi')
+    const feedback = this.state.game
     const num = this.state.game.number
     const guess = this.state.guess
 
@@ -48,9 +49,9 @@ class Game extends Component {
     else if (num[2] === guess[0] || num[2] === guess[1]) response += `${feedback.pico} `
 
     if (num[0] === guess[0] && num[1] === guess[1] && num[2] === guess[2]) {
-      response = `You guessed it in ${this.state.turns + 1} turns!`
+      response = `You guessed ${num} in ${this.state.turns + 1} turns!`
       this.setState({ over: true })
-    } else if (response === '') return (`${feedback.bagel} `)
+    } else if (response === '') response += `${feedback.bagel}`
 
     this.setState({ response: response, guesses: [...this.state.guesses, `${guess}: ${response}`], turns: this.state.turns + 1 })
   }
@@ -72,19 +73,20 @@ class Game extends Component {
     return (
       <Fragment>
         <h3>{ message }</h3>
+        <h2 className="top-message">Guess A Three Digit Number!</h2>
         { over ? ''
           : <form onSubmit={this.handleSubmit}>
-            <label htmlFor="guess">Guess A Number</label>
+            <label className="guess-heading" htmlFor="guess">Guess A Number</label>
             <input value={guess} name="guess" type="number" max="999" onChange={this.handleChange} />
             <button type="submit">Guess!</button>
           </form>
         }
         { currentUser === createdUser ? <Link to={this.props.match.url + '/edit'}><button>Edit</button></Link> : ''}
         <h1 className="guess-response"> { response } </h1>
-        <ul>
+        <ul className="guess">
           { this.state.guesses.map(guess => (
             <Fragment key={guess}>
-              <h4 className="guess">{guess}</h4>
+              <h4>{guess}</h4>
             </Fragment>
           )) }
         </ul>

@@ -12,10 +12,10 @@ const authenticatedOptions = (
 
 const authenticatedOptionsNav = (
   <React.Fragment>
-    <NavLink to="/games" exact activeClassName="active-link">Games List Three</NavLink>
-    <NavLink to="/fourgames" exact activeClassName="active-link">Games List Four</NavLink>
-    <NavLink to="/game-create" exact activeClassName="active-link">New Game Three</NavLink>
-    <NavLink to="/game-create-four" exact activeClassName="active-link">New Game Four</NavLink>
+    <NavLink to="/games" exact style={{ color: '#00FF7F' }} activeClassName="active-link">Three Digit Games</NavLink>
+    <NavLink to="/fourgames" exact style={{ color: '#00FF7F' }} activeClassName="active-link">Four Digit Games</NavLink>
+    <NavLink to="/game-create" exact style={{ color: '#00FF7F' }} activeClassName="active-link">New Three Digit Game</NavLink>
+    <NavLink to="/game-create-four" exact style={{ color: '#00FF7F' }} activeClassName="active-link">New Four Digit Game</NavLink>
   </React.Fragment>
 )
 
@@ -35,8 +35,8 @@ const alwaysOptions = (
 const Header = ({ user }) => (
   <React.Fragment>
     <header className="main-header">
-      <h1>Pico Fermi Bagel</h1>
-      <nav>
+      <h1 className="page-title">Pico Fermi Bagel</h1>
+      <nav className="header-nav">
         { user && <span>Welcome, {user.email}</span>}
         { user ? authenticatedOptions : unauthenticatedOptions }
         { alwaysOptions }

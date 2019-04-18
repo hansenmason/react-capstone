@@ -62,6 +62,7 @@ class GameEdit extends Component {
     return (
       <Fragment>
         <h3>{ message }</h3>
+        <h4 className="top-message">Edit For Three Digit Game:</h4>
         <GameForm
           pico={pico}
           fumi={fumi}

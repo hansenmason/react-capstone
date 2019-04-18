@@ -1,22 +1,31 @@
+$charcoal: #bbb;
+
 body {
   font-family: sans-serif;
   margin: 0;
   padding: 0;
 }
 
+.hi {
+  background: url(https://bookoftheday.org/wp-content/uploads/2016/02/free-beach-screensavers-2.jpg) no-repeat center center fixed;
+  background-size: cover;
+}
+
 .guess {
-  color: #ffd700;
+  color: #000080;
 }
 
 .nav-links {
   display: flex;
   padding: 20px;
   justify-content: space-between;
+  font-size: 18px;
+  border-bottom: 1px solid $charcoal;
 }
 
 .guess-response {
   display: flex;
-  color: #000080;
+  color: #708090;
   padding: 20px;
   justify-content: center;
 }
@@ -24,4 +33,36 @@ body {
 .games-list {
   padding: 10px;
   font-size: 20px;
+}
+
+.top-message {
+  display: flex;
+  padding-bottom: 25px;
+  color: #FF0000;
+  justify-content: center;
+}
+
+.form-stuff {
+  display: flex;
+  color: salmon;
+  font-size: 20px;
+  font-weight: bold;
+  flex-direction: column;
+  justify-content: center;
+  width: 200px;
+  margin-left: 50px;
+}
+
+.btn {
+  margin-left: 50px;
+}
+
+.guess-heading {
+  color: #FF4500;
+  font-weight: bold;
+  font-size: 25px;
+}
+
+.button {
+  width: 43%;
 }

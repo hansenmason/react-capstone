@@ -26,7 +26,7 @@ class GamesFour extends Component {
     return (
       <Fragment>
         <h3>{ message }</h3>
-        <h4>Games With Four Digits:</h4>
+        <h4 className="top-message">Games With Four Digits:</h4>
         <h5>{this.props.location.state ? this.props.location.state.message : ''}</h5>
         <ul>
           { this.state.fourgames.map(game => (

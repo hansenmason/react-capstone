@@ -51,7 +51,7 @@ class GameFour extends Component {
     else if (num[3] === guess[0] || num[3] === guess[1] || num[3] === guess[2]) response += `${feedback.pico} `
 
     if (num[0] === guess[0] && num[1] === guess[1] && num[2] === guess[2] && num[3] === guess[3]) {
-      response = `You guess it in ${this.state.turns + 1} turns!`
+      response = `You guessed ${num} in ${this.state.turns + 1} turns!`
       this.setState({ over: true })
     } else if (response === '') return (`${feedback.bagel} `)
 
@@ -75,9 +75,10 @@ class GameFour extends Component {
     return (
       <Fragment>
         <h3>{ message }</h3>
+        <h2 className="top-message">Guess A Four Digit Number!</h2>
         { over ? ''
           : <form onSubmit={this.handleSubmit}>
-            <label htmlFor="guess">Guess A Number</label>
+            <label className="guess-heading" htmlFor="guess">Guess A Number</label>
             <input value={guess} name="guess" type="number" max="9999" onChange={this.handleChange} />
             <button type="submit">Guess!</button>
           </form>

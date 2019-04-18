@@ -50,8 +50,6 @@ class App extends Component {
             <ChangePassword user={user} />
           )} />
         </main>
-        <nav>
-        </nav>
         <Route exact path='/games' render={(props) => (
           <Games {...props} user={user} />
         )} />
