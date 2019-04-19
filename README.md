@@ -37,7 +37,7 @@ add more digit types into the mix.
 
 ## Screenshot
 
-![alt text](https://imgur.com/yVfj1lB)
+![alt text](~/Desktop/CapstoneSS)
 
 ## Planning
 
@@ -57,7 +57,7 @@ especially with back end, and css. I also asked peers for help with css.
 
 ## Installation
 
-1.Fork and Clone this repository into desired folder.
+1. Fork and Clone this repository into desired folder.
 1. Move into the new project and `git init`.
 1. Open in atom or equivalent.
 1. Empty [`README.md`](README.md) and fill with your own content.
@@ -71,16 +71,16 @@ especially with back end, and css. I also asked peers for help with css.
 
 ## User Stories
 
-1.As a user, I want to be able to sign up using an email address and password
-1.As a user, I want to be able to sign in, and also change my password
-1.As a user, I want to be able to create games when signed in
-1.As a user, I want to be able to play the game that I create
-1.As a user, I want to be able to play the game that others have created
-1.As a user, I want to be able to edit what I call each feedback event
-1.As a user, I want to be able to delete only my games, and not others
-1.As a user, I want to be able to update only my games, and not others
-1.As a user, I want to it to show each feedback guess so I can use that as info
-1.As a user, I want it to be clear when the game is over
+-   As a user, I want to be able to sign up using an email address and password
+-   As a user, I want to be able to sign in, and also change my password
+-   As a user, I want to be able to create games when signed in
+-   As a user, I want to be able to play the game that I create
+-   As a user, I want to be able to play the game that others have created
+-   As a user, I want to be able to edit what I call each feedback event
+-   As a user, I want to be able to delete only my games, and not others
+-   As a user, I want to be able to update only my games, and not others
+-   As a user, I want to it to show each feedback guess so I can use that as info
+-   As a user, I want it to be clear when the game is over
 
 ## Link to wireframe
 
