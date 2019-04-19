@@ -14,9 +14,9 @@ three digit game lists and four digit game lists. However, a user may only edit 
 their own created games, that includes renaming the pico fermi bagel names. Enjoy!
 
 
-Link to back end github repo: https://github.com/hansenmason/rails-capstone
-Link to deployed front end: https://hansenmason.github.io/react-capstone
-Link to deployed back end: https://hansencapstone.herokuapp.com/
+-   Link to back end github repo: https://github.com/hansenmason/rails-capstone
+-   Link to deployed front end: https://hansenmason.github.io/react-capstone
+-   Link to deployed back end: https://hansencapstone.herokuapp.com/
 
 
 ## Technologies used
