@@ -69,7 +69,7 @@ class Game extends Component {
     const { guess, message, response, over } = this.state
     const currentUser = this.props.user.id.toString()
     const createdUser = this.state.game.user_id.toString()
-    console.log(this.state)
+
     return (
       <Fragment>
         <h3>{ message }</h3>
