@@ -35,6 +35,8 @@ class GameFour extends Component {
     event.preventDefault()
     const num = this.state.fourgame.number
     const guess = this.state.guess
+    console.log(num[3])
+    console.log(guess[3])
 
     let response = ''
 
@@ -45,7 +47,7 @@ class GameFour extends Component {
     else if (num[1] === guess[0] || num[1] === guess[2] || num[1] === guess[3]) response += `${feedback.pico} `
 
     if (num[2] === guess[2]) response += `${feedback.fumi} `
-    else if (num[2] === guess[0] || num[2] === guess[1] || num[0] === guess[3]) response += `${feedback.pico} `
+    else if (num[2] === guess[0] || num[2] === guess[1] || num[2] === guess[3]) response += `${feedback.pico} `
 
     if (num[3] === guess[3]) response += `${feedback.fumi} `
     else if (num[3] === guess[0] || num[3] === guess[1] || num[3] === guess[2]) response += `${feedback.pico} `
@@ -71,7 +73,7 @@ class GameFour extends Component {
     const { guess, message, response, over } = this.state
     const currentUser = this.props.user.id.toString()
     const createdUser = this.state.fourgame.user_id.toString()
-
+    console.log(this.state)
     return (
       <Fragment>
         <h3>{ message }</h3>
