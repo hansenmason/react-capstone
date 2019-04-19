@@ -53,7 +53,7 @@ class GameFour extends Component {
     if (num[0] === guess[0] && num[1] === guess[1] && num[2] === guess[2] && num[3] === guess[3]) {
       response = `You guessed ${num} in ${this.state.turns + 1} turns!`
       this.setState({ over: true })
-    } else if (response === '') return (`${feedback.bagel} `)
+    } else if (response === '') response += `${feedback.bagel}`
 
     this.setState({ response: response, guesses: [...this.state.guesses, `${guess}: ${response}`], turns: this.state.turns + 1 })
   }
