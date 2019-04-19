@@ -35,8 +35,6 @@ class GameFour extends Component {
     event.preventDefault()
     const num = this.state.fourgame.number
     const guess = this.state.guess
-    console.log(num[3])
-    console.log(guess[3])
 
     let response = ''
 
@@ -73,7 +71,7 @@ class GameFour extends Component {
     const { guess, message, response, over } = this.state
     const currentUser = this.props.user.id.toString()
     const createdUser = this.state.fourgame.user_id.toString()
-    console.log(this.state)
+
     return (
       <Fragment>
         <h3>{ message }</h3>
