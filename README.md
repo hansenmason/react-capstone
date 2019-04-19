@@ -37,9 +37,9 @@ add more digit types into the mix.
 
 ## Screenshot
 
-![alt text](~/Desktop/CapstoneSS)
+![alt text](screenshots/CapstoneSS.png)
 
-## Planning
+## Planningg
 
 My planning was the get the back end in order, and then go to the game logic,
 and finally add the styling. I had difficulty finding out what to save to the user,
