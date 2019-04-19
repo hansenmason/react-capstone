@@ -32,7 +32,6 @@ class Game extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault()
-    console.log('hi')
     const feedback = this.state.game
     const num = this.state.game.number
     const guess = this.state.guess
