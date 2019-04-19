@@ -1,6 +1,6 @@
 {
   "name": "react-auth-template",
-  "homepage": "https://hansenmason.github.io/capstone",
+  "homepage": "https://hansenmason.github.io/react-capstone",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
